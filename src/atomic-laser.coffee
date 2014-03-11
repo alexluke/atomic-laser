@@ -19,11 +19,13 @@ class AtomicLaser
       [0, 10]
       [-25, 25]
     ]
+    @ship.pulse()
 
   draw: (fps) =>
     @renderer.clear 'black'
     @ship.draw @renderer
 
   update: (dt) =>
+    @ship.update dt
 
 module.exports = AtomicLaser
