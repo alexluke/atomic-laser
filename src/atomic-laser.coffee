@@ -13,7 +13,7 @@ class AtomicLaser
     @ticker.on 'draw', @draw
 
   draw:  =>
-    @renderer.clear()
+    @renderer.clear 'black'
 
   update: (dt) =>
 

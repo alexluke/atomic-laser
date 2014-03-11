@@ -22,8 +22,8 @@ class CanvasRenderer
       width: @canvas.width
       height: @canvas.height
 
-  clear: ->
-    @drawRect 'white', 0, 0, @screen.width, @screen.height
+  clear: (color) ->
+    @drawRect color or 'white', 0, 0, @screen.width, @screen.height
 
   drawRect: (color, x, y, width, height) ->
     @ctx.save()
