@@ -1,7 +1,8 @@
 'use strict'
 
-CanvasRenderer = require './renderers/canvas'
 ticker = require 'ticker'
+CanvasRenderer = require './renderers/canvas'
+Shape = require './shape'
 
 class AtomicLaser
   constructor: ->
@@ -12,13 +13,16 @@ class AtomicLaser
     @ticker.on 'tick', @update
     @ticker.on 'draw', @draw
 
-  draw:  =>
+    @ship = new Shape 'white', [100, 100], [
+      [0, -25]
+      [25, 25]
+      [0, 10]
+      [-25, 25]
+    ]
+
+  draw: (fps) =>
     @renderer.clear 'black'
-    @renderer.drawShape 'white', [100, 100],
-      [25, 0]
-      [50, 50]
-      [25, 35]
-      [0, 50]
+    @ship.draw @renderer
 
   update: (dt) =>
 

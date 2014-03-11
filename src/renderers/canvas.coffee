@@ -45,7 +45,7 @@ class CanvasRenderer
       @ctx.closePath()
       @ctx.stroke()
 
-  drawShape: (color, origin, points...) ->
+  drawShape: (color, origin, points) ->
     if points and points.length > 0
       @ctx.save()
 
@@ -53,7 +53,12 @@ class CanvasRenderer
 
       glowWidth = 6
       padding = glowWidth + 2
-      @ctx.rect origin[0] - padding, origin[1] - padding, width + padding * 2, height + padding * 2
+      @ctx.rect origin[0] - width / 2 - padding,
+        origin[1] - height / 2 - padding,
+        width + padding * 2,
+        height + padding * 2
+      #@ctx.strokeStyle = 'pink'
+      #@ctx.stroke()
       @ctx.clip()
 
       width += padding * 2
@@ -76,12 +81,16 @@ class CanvasRenderer
     for p, i in point
       p + origin[i]
 
-  # Only handles shapes where the origin is in the upper left
   _shapeDimensions: (points) ->
-    width = height = 0
+    width = height = [0, 0]
     for p in points
-      width = Math.max p[0], width
-      height = Math.max p[1], height
-    [width, height]
+      width[0] = Math.min p[0], width[0]
+      width[1] = Math.max p[0], width[1]
+      height[0] = Math.min p[1], height[0]
+      height[1] = Math.max p[1], height[1]
+    [
+      Math.abs(width[0]) + Math.abs(width[1])
+      Math.abs(height[0]) + Math.abs(height[1])
+    ]
 
 module.exports = CanvasRenderer
