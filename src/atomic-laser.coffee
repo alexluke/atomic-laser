@@ -14,6 +14,11 @@ class AtomicLaser
 
   draw:  =>
     @renderer.clear 'black'
+    @renderer.drawShape 'white', [100, 100],
+      [25, 0]
+      [50, 50]
+      [25, 35]
+      [0, 50]
 
   update: (dt) =>
 
