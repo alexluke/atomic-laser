@@ -19,13 +19,17 @@ class AtomicLaser
       [0, 10]
       [-25, 25]
     ]
-    @ship.pulse()
+    @tickTime = 0
 
   draw: (fps) =>
     @renderer.clear 'black'
     @ship.draw @renderer
 
   update: (dt) =>
+    @tickTime += dt
+    if @tickTime > 500
+      @tickTime = 0
+      @ship.pulse()
     @ship.update dt
 
 module.exports = AtomicLaser
