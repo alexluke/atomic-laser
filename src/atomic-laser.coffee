@@ -27,7 +27,7 @@ class AtomicLaser
 
   update: (dt) =>
     @tickTime += dt
-    if @tickTime > 500
+    if @tickTime > 600
       @tickTime = 0
       @ship.pulse()
     @ship.update dt
