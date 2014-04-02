@@ -13,7 +13,7 @@ class AtomicLaser
     @ticker.on 'tick', @update
     @ticker.on 'draw', @draw
 
-    @ship = new Shape 'white', [100, 100], [
+    @ship = new Shape 'white', [200, 200], [
       [0, -25]
       [25, 25]
       [0, 10]

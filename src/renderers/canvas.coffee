@@ -45,12 +45,12 @@ class CanvasRenderer
       @ctx.closePath()
       @ctx.stroke()
 
-  drawShape: (color, origin, points) ->
+  drawShape: (color, origin, points, rotation) ->
     @ctx.save()
     @ctx.translate origin...
 
     @ctx.save()
-
+    @ctx.rotate rotation
     [width, height] = @_shapeDimensions points
 
     glowWidth = 6
@@ -65,7 +65,10 @@ class CanvasRenderer
       height
     #@ctx.strokeStyle = 'pink'
     #@ctx.stroke()
+    @ctx.restore()
     @ctx.clip()
+
+    @ctx.save()
 
     @ctx.translate -1 * width, -1 * height
 
@@ -74,10 +77,12 @@ class CanvasRenderer
     @ctx.shadowOffsetX = width
     @ctx.shadowOffsetY = height
 
+    @ctx.rotate rotation
     @_drawShape color, 6, points
 
     @ctx.restore()
 
+    @ctx.rotate rotation
     @_drawShape color, 4, points
     @ctx.restore()
 

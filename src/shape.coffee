@@ -8,12 +8,13 @@ class Shape
       size: 1.3
       duration: 100
     @originalPoints = _.cloneDeep @points
+    @rotation = Math.PI * .5
 
   pulse: ->
     @pulseUp = 0
 
   draw: (renderer) ->
-    renderer.drawShape @color, @origin, @points
+    renderer.drawShape @color, @origin, @points, @rotation
 
   update: (dt) ->
     if @pulseUp? or @pulseDown?
