@@ -3,7 +3,6 @@ module.exports = (grunt) ->
   path = require 'path'
   require('load-grunt-tasks')(grunt)
 
-  lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet
   mountFolder = (connect, dir) ->
     connect.static path.resolve dir
 
@@ -25,9 +24,9 @@ module.exports = (grunt) ->
         hostname: 'localhost'
       livereload:
         options:
+          livereload: true
           middleware: (connect) ->
             [
-              lrSnippet
               mountFolder connect, '.tmp'
               mountFolder connect, 'src'
             ]
