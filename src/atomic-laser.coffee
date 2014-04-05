@@ -2,12 +2,15 @@
 
 ticker = require 'ticker'
 CanvasRenderer = require './renderers/canvas'
+Keyboard = require './input/keyboard'
 Shape = require './shape'
 
 class AtomicLaser
   constructor: ->
     @renderer = CanvasRenderer.create 800, 480
     document.body.appendChild @renderer.canvas
+
+    @keyboard = new Keyboard()
 
     @ticker = ticker @renderer.el, 60
     @ticker.on 'tick', @update
@@ -30,6 +33,12 @@ class AtomicLaser
     if @tickTime > 600
       @tickTime = 0
       @ship.pulse()
+
+    if @keyboard.pressed 'a'
+      @ship.rotation -= .05
+    if @keyboard.pressed 'd'
+      @ship.rotation += .05
+
     @ship.update dt
 
 module.exports = AtomicLaser

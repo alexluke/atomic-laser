@@ -8,7 +8,7 @@ class Shape
       size: 1.3
       duration: 100
     @originalPoints = _.cloneDeep @points
-    @rotation = Math.PI * .5
+    @rotation = 0
 
   pulse: ->
     @pulseUp = 0
