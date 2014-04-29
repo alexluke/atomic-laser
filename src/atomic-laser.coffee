@@ -34,10 +34,24 @@ class AtomicLaser
     if @music.update()
       @ship.pulse()
 
+    if @keyboard.pressed 'up'
+      @ship.rotation = 0
+    if @keyboard.pressed 'down'
+      @ship.rotation = Math.PI
+    if @keyboard.pressed 'left'
+      @ship.rotation = Math.PI * 3/2
+    if @keyboard.pressed 'right'
+      @ship.rotation = Math.PI * 1/2
+
+    speed = 0.2 * dt
     if @keyboard.pressed 'a'
-      @ship.rotation -= .05
+      @ship.origin[0] -= speed
     if @keyboard.pressed 'd'
-      @ship.rotation += .05
+      @ship.origin[0] += speed
+    if @keyboard.pressed 'w'
+      @ship.origin[1] -= speed
+    if @keyboard.pressed 's'
+      @ship.origin[1] += speed
 
     @ship.update dt
 
