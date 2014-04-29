@@ -39,6 +39,7 @@ class Music
 
     source = @ctx.createBufferSource()
     source.buffer = @buffers[name]
+    source.loop = true
     nodes.push source
 
     @analyser = @ctx.createAnalyser()
