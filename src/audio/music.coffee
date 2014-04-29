@@ -53,7 +53,8 @@ class Music
 
     nodes.push @analyser
 
-    #nodes.push @ctx.destination
+    if window.location.search == '?music'
+      nodes.push @ctx.destination
 
     for i in [0...nodes.length - 1]
       nodes[i].connect nodes[i+1]
