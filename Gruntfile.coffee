@@ -28,6 +28,7 @@ module.exports = (grunt) ->
           middleware: (connect) ->
             [
               mountFolder connect, '.tmp'
+              mountFolder connect, 'assets'
               mountFolder connect, 'src'
             ]
     clean:

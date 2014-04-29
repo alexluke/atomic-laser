@@ -4,6 +4,7 @@ ticker = require 'ticker'
 CanvasRenderer = require './renderers/canvas'
 Keyboard = require './input/keyboard'
 Shape = require './shape'
+Music = require './audio/music'
 
 class AtomicLaser
   constructor: ->
@@ -22,16 +23,15 @@ class AtomicLaser
       [0, 10]
       [-25, 25]
     ]
-    @tickTime = 0
+    @music = new Music()
+    @music.play 'tech-a-cool'
 
   draw: (fps) =>
     @renderer.clear 'black'
     @ship.draw @renderer
 
   update: (dt) =>
-    @tickTime += dt
-    if @tickTime > 600
-      @tickTime = 0
+    if @music.update()
       @ship.pulse()
 
     if @keyboard.pressed 'a'
